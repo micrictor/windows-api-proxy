@@ -1,0 +1,8 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "*.pac": "zeek",
+        "stdio.h": "c",
+        "windows.h": "c"
+    }
+}
