@@ -4,7 +4,7 @@ CC = gcc
 
 all: main
 
-main: main.c main.h thunk.h
+main: main.c main.h loadlibrary.h thunk.h
 	$(CC) -o main main.c
 
 debug:
