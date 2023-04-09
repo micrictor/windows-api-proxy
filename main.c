@@ -45,8 +45,16 @@ int main() {
     }
     printf("\nAllocated memory location: %p\n", virtualMemoryAddress);
 
+    // Just for funsies, load in a bunch of different images so our macro uses
+    // all three methods.
     InvokeLoadLibrary("wininet.dll");
     printf("Loaded wininet.dll at %p\n", GetModuleHandleA("wininet.dll"));
+    InvokeLoadLibrary("dbghelp.dll");
+    printf("Loaded dbghelp.dll at %p\n", GetModuleHandleA("dbghelp.dll"));
+    InvokeLoadLibrary("advapi32.dll");
+    printf("Loaded advapi32.dll at %p\n", GetModuleHandleA("advapi32.dll"));
+    InvokeLoadLibrary("crypt32.dll");
+    printf("Loaded crypt32.dll at %p\n", GetModuleHandleA("crypt32.dll"));
 
     return 0;
 }

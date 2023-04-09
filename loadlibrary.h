@@ -4,14 +4,21 @@
 #include <windows.h>
 
 __attribute__((naked)) PTP_WORK_CALLBACK LoadLibraryThreadpoolCallback(
-    PTP_CALLBACK_INSTANCE       Instance,
-    UINT_PTR                    *args[],
-    PTP_WORK                    Work) {
+    PTP_CALLBACK_INSTANCE   Instance,
+    UINT_PTR                *args[],
+    PTP_WORK                 Work) {
     JmpThunk(1, *args);
 }
 
 __attribute__((naked)) PFLS_CALLBACK_FUNCTION LoadLibraryFlsCallback(
     UINT_PTR *args[]) {
+    JmpThunk(1, *args);
+}
+
+__attribute__((naked)) BOOL LoadLibraryIOEOCallback(
+    PINIT_ONCE  InitOnce,
+    UINT_PTR    *args[],
+    PVOID       *Context) {
     JmpThunk(1, *args);
 }
 
@@ -51,16 +58,32 @@ void _InvokeLoadLibraryFls(LPCSTR lpLibFileName) {
     HeapFree(GetProcessHeap(), 0, args);
 }
 
+void _InvokeLoadLibraryIOEO(LPCSTR lpLibFileName) {
+    INIT_ONCE initOnce = INIT_ONCE_STATIC_INIT;
+    UINT_PTR* args = (UINT_PTR*)HeapAlloc(GetProcessHeap(), 0, 2 * sizeof(UINT_PTR));
+    args[0] = (UINT_PTR) lpLibFileName;
+    args[1] = (UINT_PTR) AddrOf("LoadLibraryA", "kernel32.dll");
+
+    InitOnceExecuteOnce(&initOnce, (PINIT_ONCE_FN) LoadLibraryIOEOCallback, &args, NULL);
+    HeapFree(GetProcessHeap(), 0, args);
+}
+
+
 // This macro is what should actually be used to invoke LoadLibrary.
 // It will choose between the two indirection methods, with selection based on
 // the value of __COUNTER__, which is incremented by the compiler for each
 // macro call.
 #define InvokeLoadLibrary(lpLibFileName)                \
 ({                                                      \
-    if (__COUNTER__ % 2 == 0)                             \
+    int value = __COUNTER__ % 3;                        \
+    if (value == 0)                                     \
         _InvokeLoadLibraryTp(lpLibFileName);            \
-    else                                                \
-        _InvokeLoadLibraryFls(lpLibFileName);           \
+    else {                                              \
+        if (value == 1)                                 \
+            _InvokeLoadLibraryFls(lpLibFileName);       \
+        else                                            \
+            _InvokeLoadLibraryIOEO(lpLibFileName);      \
+    }                                                   \
 })
 
 #endif
