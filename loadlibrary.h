@@ -34,6 +34,10 @@ void _InvokeLoadLibraryTp(LPCSTR lpLibFileName) {
         Sleep(i);
         i *= 2;
     }
+    // Clean up, clean up, everybody clean up.
+    // Free the args array, and close the threadpool.
+    HeapFree(GetProcessHeap(), 0, args);
+    CloseThreadpoolWork(work);
 }
 
 void _InvokeLoadLibraryFls(LPCSTR lpLibFileName) {
@@ -44,6 +48,7 @@ void _InvokeLoadLibraryFls(LPCSTR lpLibFileName) {
     flsIndex = FlsAlloc((PFLS_CALLBACK_FUNCTION) LoadLibraryFlsCallback);
     FlsSetValue(flsIndex, &args);
     FlsFree(flsIndex);
+    HeapFree(GetProcessHeap(), 0, args);
 }
 
 // This macro is what should actually be used to invoke LoadLibrary.
