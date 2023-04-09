@@ -1,1 +1,1 @@
-disassemble NtAllocateVirtualMemoryCallback
+disassemble LoadLibraryCallback
