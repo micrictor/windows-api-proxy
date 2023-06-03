@@ -1,0 +1,19 @@
+{
+    "session_properties": {
+        "session_name": "Callstack-Collect",
+        "output_format": "file",
+        "output_filename": "C:\\Users\\User\\Desktop\\etw-output2.json"
+    },
+     "user_traces": [
+        {
+            "trace_name": "MWTI",
+            "provider_name": "Microsoft-Windows-Threat-Intelligence",
+            "report_stacktrace": true,
+            "filters": {
+                "any_of": {
+                    "process_name_contains": "main.exe"
+                }
+            }
+        }
+    ]
+}
