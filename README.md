@@ -96,3 +96,24 @@ It's not really related to the primary purpose of this tool, but in
 uses the `__COUNTER__` macro, which increments by one each use, as a source of
 pseudorandomness to select one of the three available proxying methods at
 compile-time.
+
+
+## Detections
+
+I built `control.exe` that uses the exact same payload, exact same string
+encryption method, and same dynamic import functionality.
+
+The main difference between `control.exe` and `main.exe` is that `main.exe`
+utilizes callbacks to indirectly do the VirtualAlloc and VirtualProtect calls.
+`main.exe` also has some additional debug prints in the startup function.
+
+control.exe, which just does direct execution, has 16/71 on VT.
+https://www.virustotal.com/gui/file/99bcdbde638353fa59f2ce91c0ff7c27f7c2d5cbaf3f2cb720920f436316b8f4?nocache=1
+![control virustotal detections](images/control.exe-2023-06-04.png?raw=true)
+
+main.exe, using the techniques described, has 5/71 on VT.
+https://www.virustotal.com/gui/file/f2f44f72fd1f12bf184327e1a9a79e65eb8b100146ccbe73749f41a41084fbd2?nocache=1
+![main virustotal detections](images/main.exe-2023-06-04.png?raw=true)
+
+Note that while Elastic still detects it, confidence goes from "high" to "moderate".
+
