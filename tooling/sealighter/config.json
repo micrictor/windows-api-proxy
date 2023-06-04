@@ -2,7 +2,7 @@
     "session_properties": {
         "session_name": "Callstack-Collect",
         "output_format": "file",
-        "output_filename": "C:\\Users\\User\\Desktop\\etw-output2.json"
+        "output_filename": "C:\\Users\\User\\Desktop\\etw-output.json"
     },
      "user_traces": [
         {
