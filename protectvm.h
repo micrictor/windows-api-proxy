@@ -50,7 +50,6 @@ void _InvokeProtectVirtualMemoryTp(PVOID *baseAddress, PSIZE_T memoryLength, ULO
     CloseThreadpoolWork(work);
 }
 
-// Idk why but this one only works with threadpools and not IOEO
 #define InvokeProtectVirtualMemory(baseAddress, memoryLength, newProtect, oldProtect)                \
 ({                                                                                                    \
     _InvokeProtectVirtualMemoryTp(baseAddress, memoryLength, newProtect, oldProtect);                \
