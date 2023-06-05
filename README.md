@@ -109,11 +109,25 @@ utilizes callbacks to indirectly do the VirtualAlloc and VirtualProtect calls.
 
 control.exe, which just does direct execution, has 16/71 on VT.
 https://www.virustotal.com/gui/file/99bcdbde638353fa59f2ce91c0ff7c27f7c2d5cbaf3f2cb720920f436316b8f4?nocache=1
+
+
 ![control virustotal detections](images/control.exe-2023-06-04.png?raw=true)
+
+One day later, it has 28/71 on VT.
+
+
+![control virustotal detections](images/control.exe-2023-06-05.png?raw=true)
+
 
 main.exe, using the techniques described, has 5/71 on VT.
 https://www.virustotal.com/gui/file/f2f44f72fd1f12bf184327e1a9a79e65eb8b100146ccbe73749f41a41084fbd2?nocache=1
+
+
 ![main virustotal detections](images/main.exe-2023-06-04.png?raw=true)
 
 Note that while Elastic still detects it, confidence goes from "high" to "moderate".
 
+One day later, it has 6/71.
+
+
+![main virustotal detections](images/main.exe-2023-06-05.png?raw=true)
