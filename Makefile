@@ -1,11 +1,13 @@
 # A makefile for compiling main.c using gcc
 
-CC = gcc
+CC = g++
+
+OPTS = -std=gnu++20
 
 all: main
 
-main: main.c main.h loadlibrary.h thunk.h
-	$(CC) -o main main.c
+main: main.cpp main.h thunk.h invoker.h invoker_ioeo.h invoker_ioeo.cpp
+	$(CC) $(OPTS) -o main main.cpp invoker_ioeo.cpp
 
 debug:
-	$(CC) -g -o main main.c
+	$(CC) $(OPTS) -g -o main main.cpp
