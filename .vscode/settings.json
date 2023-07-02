@@ -3,6 +3,7 @@
     "files.associations": {
         "*.pac": "zeek",
         "stdio.h": "c",
-        "windows.h": "c"
+        "windows.h": "c",
+        "protectvm.h": "c"
     }
 }

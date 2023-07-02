@@ -4,7 +4,7 @@ CC = gcc
 
 all: main
 
-main: main.c allocvm.h loadlibrary.h protectvm.h thunk.h payload.h procaddr.h
+main: main.c allocvm.h protectvm.h thunk.h payload.h procaddr.h
 	$(CC) -o main main.c
 
 debug:

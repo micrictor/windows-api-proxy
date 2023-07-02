@@ -3,7 +3,6 @@
 #include <windows.h>
 
 #include "allocvm.h"
-#include "loadlibrary.h"
 #include "protectvm.h"
 #include "thunk.h"
 #include "payload.h"

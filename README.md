@@ -131,3 +131,8 @@ One day later, it has 6/71.
 
 
 ![main virustotal detections](images/main.exe-2023-06-05.png?raw=true)
+
+
+
+With encrypted function names, 3/71 - https://www.virustotal.com/gui/file/e9b6b897f0a64db8506954d73ed4b4528601afcee7cc549ae7397c32591e2f4c/behavior
+
